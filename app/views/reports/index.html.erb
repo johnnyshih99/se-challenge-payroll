@@ -1,0 +1,29 @@
+<%= flash[:notice] %>
+
+<div>
+  <h4> Import data </h4>
+  <%= form_tag import_reports_path, multipart:true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
+<br><br>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Pay Period</th>
+      <th>Amount Paid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |e| %>
+    <tr>
+      <td><%= e.date %></td>
+      <td><%= e.hours_worked %></td>
+      <td><%= e.employee_id %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

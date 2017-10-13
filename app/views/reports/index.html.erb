@@ -19,12 +19,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @data.each do |d| %>
+    <% if @data.blank? %>
+      <tr>
+        <td colspan=3>No data available</td>
+      </tr>
+    <% else %>
+      <% @data.each do |d| %>
       <tr>
         <td><%= d[:id] %></td>
         <td><%= d[:pay_period] %></td>
         <td><%= number_to_currency(d[:amount_paid]) %></td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

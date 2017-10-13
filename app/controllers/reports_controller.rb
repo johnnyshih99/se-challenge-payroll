@@ -4,6 +4,8 @@ class ReportsController < ApplicationController
     emps = Employee.all
 
     emps.each do |e|
+      # deep_sort_by_keys works but at the end sorting is separated out to 
+      # allow flexibility when sorting different layers (years, months, halves)
       # h = deep_sort_by_keys(e.amount_per_pay_period)
       h = e.amount_per_pay_period
       

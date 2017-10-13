@@ -10,6 +10,7 @@ class Employee < ActiveRecord::Base
     jobs.each do |job|
       amount_paid = job.hours_worked * rate[job.job_group]
 
+      # determine pay period in a month (first half or second half)
       mid = job.date.beginning_of_month + 15.days
       if job.date < mid
         half = 1
@@ -19,6 +20,7 @@ class Employee < ActiveRecord::Base
         date_str = mid.strftime("%d/%m/%Y") + " - " + job.date.end_of_month.strftime("%d/%m/%Y")
       end
 
+      # populate the nested hash
       if data[job.date.year].nil?
         data[job.date.year] = {
           job.date.month => {
@@ -31,7 +33,7 @@ class Employee < ActiveRecord::Base
         }
       elsif data[job.date.year][job.date.month][half].nil?
         data[job.date.year][job.date.month][half] = [amount_paid, date_str]
-      else
+      else # add amount if pay period already exists
         data[job.date.year][job.date.month][half][0] += amount_paid
       end
     end

@@ -9,6 +9,7 @@
 </div>
 <br><br>
 
+<h4> Payroll Report </h4>
 <table border="1">
   <thead>
     <tr>
@@ -18,12 +19,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @jobs.each do |e| %>
-    <tr>
-      <td><%= e.date %></td>
-      <td><%= e.hours_worked %></td>
-      <td><%= e.employee_id %></td>
-    </tr>
+    <% @data.each do |d| %>
+      <tr>
+        <td><%= d[:id] %></td>
+        <td><%= d[:pay_period] %></td>
+        <td><%= number_to_currency(d[:amount_paid]) %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

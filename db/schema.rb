@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20171011235632) do
 
   create_table "jobs", force: :cascade do |t|
     t.date     "date"
-    t.integer  "hours_worked"
+    t.decimal  "hours_worked"
     t.string   "job_group"
     t.integer  "employee_id"
     t.integer  "report_id"
